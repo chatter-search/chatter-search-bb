@@ -1,0 +1,12 @@
+{{> cute-bird}}
+{{> search-bar}}
+{{#if name}}
+	<div class="profile-card">
+		{{#if profile_image_url_https}}
+			<img src="{{profile_image_url_https}}" alt="{{name}}" />
+		{{/if}}
+		<div>{{name}}<span>@{{screen_name}}</span></div>
+		{{#if description}}<div class="profile-description">{{description}}</div>{{/if}}
+	</div>
+{{/if}}
+{{#if isEmpty}}<div class="profile-card">Nothing found</div>{{/if}}

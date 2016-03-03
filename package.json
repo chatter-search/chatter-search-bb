@@ -1,0 +1,19 @@
+{
+  "name": "chatter-search-web",
+  "version": "1.0.0",
+  "description": "Client for chatter search API",
+  "author": "Dmitrii Lapshukov<lapshukov@gmail.com>",
+  "scripts": {
+  	"clean": "rm -rf build",
+    "compile-tmpl": "mkdir -p build/script && handlebars --amd -e hbs -c -f build/script/__templates.js src/tmpl/*.hbs",
+    "compile-style": "mkdir -p build/style && node-sass src/style/ -r -o build/style",
+    "build-script": "scripts/build-script.sh",
+    "build-index": "scripts/build-index.sh",
+    "build": "npm run clean && npm run build-index && npm run build-script && npm run compile-tmpl && npm run compile-style"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "handlebars": "4.0.5",
+    "node-sass": "3.4.2"
+  }
+}

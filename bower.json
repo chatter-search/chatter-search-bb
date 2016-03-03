@@ -1,0 +1,20 @@
+{
+  "name": "chatter-search-web",
+  "version": "1.0.0",
+  "authors": [
+    "Dmitrii Lapshukov<Lapshukov@gmail.com>"
+  ],
+  "description": "Web client for chatter-search-api",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "backbone": "1.2.3",
+    "jquery": "2.2.1",
+    "requirejs": "2.1.22",
+    "pure": "0.6.0",
+    "requirejs-plugins": "1.0.3"
+  }
+}
