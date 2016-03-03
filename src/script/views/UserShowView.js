@@ -8,7 +8,7 @@ define(function(require) {
 	var Backbone = require("backbone");
 	var $ = require("jquery");
 	var _ = require("underscore");
-	var templates = require("elements/templates");
+	var templates = require("bites/templates");
 	var indexTemplate = templates.index;
 
 	return Backbone.View.extend({
