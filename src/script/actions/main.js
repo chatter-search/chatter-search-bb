@@ -1,16 +1,19 @@
 define(function(require) {
 
- 	var	UserShowView = require("views/UserShowView");
+ 	var	MainView = require("views/MainView");
  	var	UserShowModel = require("models/UserShowModel");
+ 	var UserTimelineCollection = require("collections/UserTimelineCollection");
  	var $ = require("jquery");
 
  	return function() {
  		var userShowModel = new UserShowModel();
- 		var userShowView = new UserShowView({
- 			model: userShowModel
+ 		var userTimelineCollection = new UserTimelineCollection();
+ 		var mainView = new MainView({
+ 			model: userShowModel,
+ 			collection: userTimelineCollection
  		});
 
- 		userShowView.render();
- 		$("#user-show").prepend(userShowView.$el);
+ 		mainView.render(userShowModel);
+ 		$("#user-show").prepend(mainView.$el);
 	};
 });
