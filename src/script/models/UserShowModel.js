@@ -7,16 +7,20 @@ define(function(require) {
 	var appConfig = require("app-config");
 
 	return Backbone.Model.extend({
-		urlRoot: appConfig.api_110.userShowUri,
+		url: appConfig.api_110.userShowUri,
 		parse: function(data) {
+
+			// well... apparently passingn reset: true
+			//+ to the fetch did't made the trick
+			this.clear({
+				silent: true
+			});
+
 			//@TODO consider api improvements
 			if ( data ) {
 				data.isEmpty = false;
 				return data;
 			} else {
-				this.clear({
-					silent: true
-				});
 				return {
 					isEmpty: true
 				};
