@@ -1,0 +1,11 @@
+{{#each tweets}}
+	<section class="user-timeline-item">
+		{{#each photos}}
+			<a href="{{url}}">
+				<img src="{{media_url_https}}" alt="{{text}}" />
+			</a>
+		{{/each}}
+		<div class="user-timeline-text">{{text}}</div>
+		<div class="clear"></div>
+	</section>
+{{/each}}

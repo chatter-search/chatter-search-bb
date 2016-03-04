@@ -1,0 +1,15 @@
+{{#unless isEmpty}}
+	<div class="user-timeline-items">
+		<div class="user-timeline-filter">
+			<label>
+				Has image:<input type="checkbox" name="has-image" value="true" />
+			</label>
+			<label>
+				Minimal number of retweets:<input type="number" min="0" step="1" name="retweets-threshold" />
+			</label>
+		</div>
+		<div class="user-timeline-content">
+			{{> userTimelineContent}}
+		</div>
+	</div>
+{{/unless}}
