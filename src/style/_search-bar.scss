@@ -17,20 +17,24 @@ Markup:
   top: 80px;
   left: 50%;
   margin-left: 18px;
+
+  -webkit-transition: -webkit-transform 500ms cubic-bezier(0.4, 0, 1, 1);
+    -moz-transition: -moz-transform 500ms cubic-bezier(0.4, 0, 1, 1);
+      transition: transform 500ms cubic-bezier(0.4, 0, 1, 1);
 }
 
 #content.on {
   -webkit-animation-name: in-out;
   animation-name: in-out;
-  -webkit-animation-duration: 0.7s;
-  animation-duration: 0.7s;
+  -webkit-animation-duration: 0.2s;
+  animation-duration: 0.2s;
   -webkit-animation-timing-function: linear;
   animation-timing-function: linear;
   -webkit-animation-iteration-count: 1;
   animation-iteration-count: 1;
 }
 
-input {
+.input {
   box-sizing: border-box;
   width: 50px;
   height: 50px;
@@ -143,4 +147,11 @@ input {
   -webkit-transform: translate(-100%, -50%);
   -ms-transform: translate(-100%, -50%);
   transform: translate(-100%, -50%);
+}
+
+.expanded {
+  -webkit-transform: translate(120px, 0);
+     -moz-transform: translate(120px, 0);
+      -ms-transform: translate(120px, 0);
+        transform: translate(120px, 0);
 }
