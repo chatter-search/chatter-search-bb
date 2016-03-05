@@ -20,15 +20,16 @@ define(function(require) {
 			"change [name=has-image]": "filterImages",
 			"input [name=retweets-threshold]": "filterRetweetsThreshold"
 		},
-		filters: {
-			hasImage: false,
-			retweetsThreshold: 0
-		},
 		template: timelineTemplate,
 		// This is going to be triggered by MainView as well
 		render: function() {
 			var tweets = this.collection.toJSON();
 			var isEmpty = tweets.length === 0;
+
+			this.filters = {
+				hasImage: false,
+				retweetsThreshold: 0
+			};
 
 			var rendered = this.template({
 				isEmpty: isEmpty,
@@ -76,7 +77,7 @@ define(function(require) {
 					tweets: tweets
 				});
 			} else {
-				
+
 				rendered = timelineContentEmpty({
 					text: "Nothing matched your criteria."
 				});
