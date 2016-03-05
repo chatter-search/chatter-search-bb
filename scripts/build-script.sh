@@ -1,6 +1,5 @@
 #!/usr/bin/env bash -x
 
-mkdir -p build/script/lib
 cp \
 bower_components/{\
 jquery/dist/jquery.js,\
