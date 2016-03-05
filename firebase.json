@@ -1,6 +1,6 @@
 {
   "firebase": "chatter-search",
-  "public": "build",
+  "public": "deploy",
   "ignore": [
     "firebase.json",
     "**/.*",
