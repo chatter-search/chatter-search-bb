@@ -4,7 +4,7 @@
 
 /* global define */
 define(function () {
-  var apiBase = 'http://localhost:5000'
+  var apiBase = 'https://chatter-search-api.herokuapp.com'
   var appConfig = {
     api_110: {
       userShowUri: apiBase + '/1.2.0/user_show',
