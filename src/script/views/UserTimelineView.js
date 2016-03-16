@@ -2,87 +2,121 @@
  * User Timeline View
  */
 
-define(function(require) {
-	"use strict";
+/* global define */
+define(function (require) {
+  'use strict'
 
-	var Backbone = require("backbone");
-	var $ = require("jquery");
-	var _ = require("underscore");
+  var Backbone = require('backbone')
+  var _ = require('underscore')
 
-	var templates = require("spices/templates");
-	var timelineTemplate = templates.userTimeline;
-	var timelineContentTemplate = templates.userTimelineContent;
-	var timelineContentEmpty = templates.userTimelineContentEmpty;
+  var templates = require('spices/templates')
+  var timelineTemplate = templates.userTimeline
+  var timelineContentTemplate = templates.userTimelineContent
+  var timelineContentEmpty = templates.userTimelineContentEmpty
 
-	return Backbone.View.extend({
-		el: "#user-timeline",
-		events: {
-			"change [name=has-image]": "filterImages",
-			"input [name=retweets-threshold]": "filterRetweetsThreshold"
-		},
-		template: timelineTemplate,
-		// This is going to be triggered by MainView as well
-		render: function() {
-			var tweets = this.collection.toJSON();
-			var isEmpty = tweets.length === 0;
+  return Backbone.View.extend({
+    el: '#user-timeline',
+    events: {
+      'change [name=filter-has-image]': 'filterImages',
+      'input [name=filter-retweet-count]': 'filterRetweetCount',
+      'change [name=sort-by]': 'sortBy'
+    },
+    template: timelineTemplate,
+    // This is going to be triggered by MainView as well
+    render: function () {
+      var tweets = this.collection.toJSON()
+      var isEmpty = tweets.length === 0
 
-			this.filters = {
-				hasImage: false,
-				retweetsThreshold: 0
-			};
+      this.toolbar = {
+        filters: {
+          hasImage: false,
+          retweetCount: 0
+        },
+        sort: {}
+      }
 
-			var rendered = this.template({
-				isEmpty: isEmpty,
-				tweets: tweets
-			});
-			this.$el.html(rendered);
-		},
-		filter: function() {
-			var retweetsThreshold = this.filters.retweetsThreshold;
-			var hasImage = this.filters.hasImage;
-			var tweetsModelsArray = this.collection.filter(function(el) {
-				var hasPhotos = Boolean(el.has("photos"));
-				var isPassThreshold = el.get("retweet_count") >= retweetsThreshold;
+      var rendered = this.template({
+        isEmpty: isEmpty,
+        tweets: tweets
+      })
+      this.$el.html(rendered)
+    },
+    filter: function () {
+      var retweetCount = this.toolbar.filters.retweetCount
+      var hasImage = this.toolbar.filters.hasImage
+      var tweets = this.collection.filter(function (el) {
+        var hasPhotos = Boolean(el.has('photos'))
+        var isPassThreshold = el.get('retweet_count') >= retweetCount
 
-				var isGood = hasImage? (hasPhotos && isPassThreshold) : isPassThreshold;
+        var isGood = hasImage ? (hasPhotos && isPassThreshold) : isPassThreshold
 
-				return isGood;
-			});
-			// @TODO there should be easier ways to deal with...
-			var tweets = _.map(tweetsModelsArray, function(el) {
-				return el.toJSON();
-			});
-			return tweets;
-		},
-		filterImages: function(ev) {
-			var on = ev.target.checked;
-			this.filters.hasImage = on;
+        return isGood
+      })
 
-			this.renderFilter();
-		},
-		filterRetweetsThreshold: function(ev) {
-			var retweetsThreshold = Number(ev.target.value);
-			this.filters.retweetsThreshold = retweetsThreshold;
+      return tweets
+    },
+    filterImages: function (ev) {
+      var on = ev.target.checked
+      this.toolbar.filters.hasImage = on
 
-			this.renderFilter();
-		},
+      this.renderFiltered()
+    },
+    filterRetweetCount: function (ev) {
+      var retweetCount = Number(ev.target.value)
+      this.toolbar.filters.retweetCount = retweetCount
 
-		renderFilter: function() {
-			var tweets = this.filter();
-			var rendered;
+      this.renderFiltered()
+    },
 
-			if ( tweets.length ) {
+    renderFiltered: function () {
+      var tweetsModelsArray = this.filter()
+      this.filteredCollection = new Backbone.Collection(tweetsModelsArray)
+      // preserve sorting
+      tweetsModelsArray = this.sort()
 
-				rendered = timelineContentTemplate({
-					tweets: tweets
-				});
-			} else {
+      var tweets = _.map(tweetsModelsArray, function (el) {
+        return el.toJSON()
+      })
 
-				rendered = timelineContentEmpty({
-					text: "Nothing matched your criteria."
-				});
-			}
-			this.$(".user-timeline-content").html(rendered);
-		}
-	});
-});
+      var rendered
+      if (tweets.length) {
+        rendered = timelineContentTemplate({
+          tweets: tweets
+        })
+      } else {
+        rendered = timelineContentEmpty({
+          text: 'Nothing matched your criteria.'
+        })
+      }
+      this.reRenderTimelineContent(rendered)
+    },
+    sort: function () {
+      var criteria = this.toolbar.sort.criteria
+      var collection = this.filteredCollection || this.collection
+      return collection.sortBy(criteria)
+    },
+    sortBy: function (ev) {
+      var criteria = ev.target.value
+
+      this.toolbar.sort = {
+        criteria: criteria
+      }
+
+      this.renderSorted()
+    },
+    renderSorted: function () {
+      var tweetsModelsArray = this.sort()
+      var tweets = _.map(tweetsModelsArray, function (el) {
+        return el.toJSON()
+      })
+      var rendered = timelineContentTemplate({
+        tweets: tweets
+      })
+
+      this.reRenderTimelineContent(rendered)
+    },
+    reRenderTimelineContent: function (rendered) {
+      this.$('.user-timeline-content').html(rendered)
+    }
+  })
+})

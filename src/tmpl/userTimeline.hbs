@@ -1,13 +1,21 @@
 {{#unless isEmpty}}
 	<div class="user-timeline-items">
-		<div class="user-timeline-filter">
+		<form class="user-timeline-toolbar">
 			<label>
-				Has image:<input type="checkbox" name="has-image" value="true" />
+				Has image:<input type="checkbox" name="filter-has-image" value="true" />
 			</label>
 			<label>
-				Minimal number of retweets:<input type="number" min="0" step="1" value="0" name="retweets-threshold" />
+				Minimal number of retweets:<input type="number" min="0" step="1" value="0" name="filter-retweet-count" />
 			</label>
-		</div>
+			<radiogroup>
+				<label>
+					Sort by date:<input type="radio" value="created_at_timestamp" name="sort-by" />
+				</label>
+				<label>
+					Sort by length:<input type="radio" value="text_length" name="sort-by" />
+				</label>
+			</radiogroup>
+		</form>
 		<div class="user-timeline-content">
 			{{> userTimelineContent}}
 		</div>
