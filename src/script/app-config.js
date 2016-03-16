@@ -1,11 +1,16 @@
 /**
  * Application configuration
  */
-define(function() {
-	return {
-		api_110: {
-			userShowUri: "https://chatter-search-api.herokuapp.com/1.1.0/user_show",
-			userTimelineUri: "https://chatter-search-api.herokuapp.com/1.1.0/user_timeline"
-		}
-	};
-});
+
+/* global define */
+define(function () {
+  var apiBase = 'http://localhost:5000'
+  var appConfig = {
+    api_110: {
+      userShowUri: apiBase + '/1.2.0/user_show',
+      userTimelineUri: apiBase + '/1.2.0/user_timeline'
+    }
+  }
+
+  return appConfig
+})
