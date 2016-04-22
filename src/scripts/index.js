@@ -4,7 +4,7 @@
 
 /* global define */
 define((require) => {
-  // Load jQuery plugins
+  'use strict'
   require('polyfill')
   require('jquery')
   require('spices/plugins/serializeObject')

@@ -1,6 +1,7 @@
 /**
  * RequireJs config
  */
+
 require.config({
-	deps: ["start"]
-});
+  deps: ['index']
+})
