@@ -2,4 +2,4 @@
 
 mkdir -p build/scripts
 
-handlebars --amd -e hbs -c -f build/scripts/__templates.js src/tmpl/*.hbs
+handlebars --amd -e hbs -c -f build/scripts/__templates.js src/templates/*.hbs
