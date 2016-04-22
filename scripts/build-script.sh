@@ -1,14 +1,9 @@
-#!/usr/bin/env bash -x
-
-mkdir -p build/script
-cp \
-bower_components/{\
-jquery/dist/jquery.js,\
-underscore/underscore.js,\
-backbone/backbone.js} \
-build/script
+#!/usr/bin/env bash
 
 cp node_modules/{\
+jquery/dist/jquery.js,\
+underscore/underscore.js,\
+backbone/backbone.js, \
 handlebars/dist/handlebars.runtime.js,\
 requirejs/require.js} \
 build/script
