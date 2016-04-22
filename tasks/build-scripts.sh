@@ -6,6 +6,6 @@ underscore/underscore.js,\
 backbone/backbone.js, \
 handlebars/dist/handlebars.runtime.js,\
 requirejs/require.js} \
-build/script
+build/scripts
 
-cp -r src/script/* build/script
+cp -r src/scripts/* build/scripts

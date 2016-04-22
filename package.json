@@ -5,13 +5,13 @@
   "author": "Dmitrii Lapshukov<lapshukov@gmail.com>",
   "scripts": {
     "clean": "rm -rf build",
-    "compile-tmpl": "mkdir -p build/script && handlebars --amd -e hbs -c -f build/script/__templates.js src/tmpl/*.hbs",
-    "compile-style": "mkdir -p build/style && node-sass src/style/ -r -o build/style",
-    "build-script": "scripts/build-script.sh",
-    "build-index": "scripts/build-index.sh",
-    "optimize": "scripts/optimize.sh",
+    "compile-templates": "mkdir -p build/scripts && handlebars --amd -e hbs -c -f build/scripts/__templates.js src/tmpl/*.hbs",
+    "compile-styles": "mkdir -p build/styles && node-sass src/styles/ -r -o build/styles",
+    "build-scripts": "tasks/build-scripts.sh",
+    "build-index": "tasks/build-index.sh",
+    "optimize": "tasks/optimize.sh",
     "deploy": "firebase deploy",
-    "build": "npm run build-index && npm run build-script && npm run compile-tmpl && npm run compile-style"
+    "build": "npm run build-index && npm run build-scripts && npm run compile-templates && npm run compile-styles"
   },
   "license": "ISC",
   "dependencies": {
