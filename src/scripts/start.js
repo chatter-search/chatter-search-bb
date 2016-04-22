@@ -2,12 +2,14 @@
  * @module - main starter
  */
 
-define(function(require) {
-	// Load jQuery plugins
-	require("jquery");
-	require("spices/plugins/serializeObject");
+/* global define */
+define((require) => {
+  // Load jQuery plugins
+  require('polyfill')
+  require('jquery')
+  require('spices/plugins/serializeObject')
 
- 	require(["actions/main"], function(main) {
- 		main();
- 	});
-});
+  require(['actions/main'], (main) => {
+    main()
+  })
+})

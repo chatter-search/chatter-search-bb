@@ -4,12 +4,14 @@
   "description": "Client for chatter search API",
   "author": "Dmitrii Lapshukov<lapshukov@gmail.com>",
   "scripts": {
+    "lint": "standard",
     "clean": "rm -rf build",
+    "copy-dependencies": "./tasks/copy-dependencies.sh",
     "compile-templates": "./tasks/compile-templates.sh",
     "compile-styles": "./tasks/compile-styles.sh > ./build/styles/index.css",
     "watch-styles": "sane 'npm run compile-styles' ./src/styles --glob='**/*.scss'",
-    "copy-dependencies": "./tasks/copy-dependencies.sh",
-    "build-scripts": "./tasks/build-scripts.sh",
+    "compile-scripts": "./tasks/compile-scripts.sh",
+    "watch-scripts": "sane 'npm run compile-scripts' ./src/scripts --glob=**/*.js",
     "build-index": "./tasks/build-index.sh",
     "optimize": "./tasks/optimize.sh",
     "deploy": "firebase deploy",
@@ -18,12 +20,17 @@
   "license": "ISC",
   "dependencies": {
     "autoprefixer": "6.3.6",
+    "babel-cli": "6.7.7",
+    "babel-polyfill": "6.7.4",
+    "babel-preset-es2015": "6.6.0",
+    "babel-preset-es2015-without-strict": "0.0.2",
     "backbone": "1.3.3",
     "handlebars": "4.0.5",
     "jquery": "2.2.3",
     "node-sass": "3.4.2",
     "postcss-cli": "2.5.1",
-    "requirejs": "2.1.22"
+    "requirejs": "2.1.22",
+    "standard": "6.0.8"
   },
   "devDependencies": {
     "sane": "1.3.4"
