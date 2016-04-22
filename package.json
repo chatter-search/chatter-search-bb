@@ -11,7 +11,7 @@
     "build-index": "scripts/build-index.sh",
     "optimize": "scripts/optimize.sh",
     "deploy": "firebase deploy",
-    "build": "npm run clean && npm run build-index && npm run build-script && npm run compile-tmpl && npm run compile-style"
+    "build": "npm run build-index && npm run build-script && npm run compile-tmpl && npm run compile-style"
   },
   "license": "ISC",
   "dependencies": {
