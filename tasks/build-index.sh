@@ -1,4 +1,8 @@
-#!/usr/bin/env bash -x
+#!/usr/bin/env bash
 
-mkdir -p build
-cp src/index.html build/index.html
+version=${npm_package_version}
+mkdir -p ./build
+
+cat ./src/index.html | \
+sed -E "s/(<meta name=\"version\" content=\")[[:alnum:].]*(\">)/\1$version\2/" > \
+./build/index.html
