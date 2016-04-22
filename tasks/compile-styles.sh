@@ -2,4 +2,5 @@
 
 mkdir -p build/styles
 
-node-sass src/styles/ -r -o build/styles
+node-sass ./src/styles/index.scss \
+| postcss "$@" -c ./postcss-options.json

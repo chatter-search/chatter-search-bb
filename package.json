@@ -6,7 +6,9 @@
   "scripts": {
     "clean": "rm -rf build",
     "compile-templates": "./tasks/compile-templates.sh",
-    "compile-styles": "./tasks/compile-styles.sh",
+    "compile-styles": "./tasks/compile-styles.sh > ./build/styles/index.css",
+    "watch-styles": "sane 'npm run compile-styles' ./src/styles --glob='**/*.scss'",
+    "copy-dependencies": "./tasks/copy-dependencies.sh",
     "build-scripts": "./tasks/build-scripts.sh",
     "build-index": "./tasks/build-index.sh",
     "optimize": "./tasks/optimize.sh",
@@ -15,10 +17,15 @@
   },
   "license": "ISC",
   "dependencies": {
+    "autoprefixer": "6.3.6",
     "backbone": "1.3.3",
     "handlebars": "4.0.5",
     "jquery": "2.2.3",
     "node-sass": "3.4.2",
+    "postcss-cli": "2.5.1",
     "requirejs": "2.1.22"
+  },
+  "devDependencies": {
+    "sane": "1.3.4"
   }
 }

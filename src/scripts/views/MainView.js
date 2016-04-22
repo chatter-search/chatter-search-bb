@@ -38,16 +38,7 @@ define(function (require) {
       this.userTimelineView.render()
     },
     searchButton: function () {
-      this.$('.search').toggleClass('close')
-      this.$('.input').toggleClass('square')
-
-      if (this.$('.search').hasClass('close')) {
-        this.$('input').focus()
-        this.$('#content').addClass('expanded')
-      } else {
-        this.$('#content').removeClass('expanded')
-        this.$('input').blur()
-      }
+      this.$('.search-bar').toggleClass('expanded')
     },
     submitForm: function (ev) {
       ev.preventDefault()
