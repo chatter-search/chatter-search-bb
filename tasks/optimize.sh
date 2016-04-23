@@ -1,10 +1,11 @@
 #!/usr/bin/env bash -x
 
-r.js -o scripts/optimize-config.js
+r.js -o tasks/optimize-config.js
 
-# cleanup unnecessary files
+# replace require-config.js to index.js
+# due to optimization took care of it already
 cd deploy
-	sed -i.bak 's/require-config/start/' index.html
+	sed -i.bak 's/require-config/index/' index.html
 	rm index.html.bak
 	rm script/require-config.js
 cd -
