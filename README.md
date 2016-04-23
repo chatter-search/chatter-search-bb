@@ -4,4 +4,4 @@
 
 [Demo.](https://chatter-search-bb.surge.sh/)
 
-Backbone/requirejs/sass based app.
+Backbone/Requirejs/SASS based app.

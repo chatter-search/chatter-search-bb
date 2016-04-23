@@ -12,7 +12,6 @@ define(function (require) {
   var templates = require('spices/templates')
   var timelineTemplate = templates.userTimeline
   var timelineContentTemplate = templates.userTimelineContent
-  var timelineContentEmpty = templates.userTimelineContentEmpty
 
   return Backbone.View.extend({
     el: '#user-timeline',
@@ -79,15 +78,10 @@ define(function (require) {
       })
 
       var rendered
-      if (tweets.length) {
-        rendered = timelineContentTemplate({
-          tweets: tweets
-        })
-      } else {
-        rendered = timelineContentEmpty({
-          text: 'Nothing matched your criteria.'
-        })
-      }
+      rendered = timelineContentTemplate({
+        tweets: tweets
+      })
+
       this.reRenderTimelineContent(rendered)
     },
     sort: function () {

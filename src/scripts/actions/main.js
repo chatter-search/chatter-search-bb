@@ -1,5 +1,6 @@
 /* global define */
 define(function (require) {
+  'use strict'
   var MainView = require('views/MainView')
   var UserShowModel = require('models/UserShowModel')
   var UserTimelineCollection = require('collections/UserTimelineCollection')
