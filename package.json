@@ -15,8 +15,9 @@
     "watch-scripts": "sane 'npm run compile-scripts' ./src/scripts --glob=**/*.js",
     "build-index": "./tasks/build-index.sh",
     "optimize": "./tasks/optimize.sh",
-    "deploy": "firebase deploy",
-    "build": "./tasks/build.sh"
+    "build": "./tasks/build.sh",
+    "surge": "surge ./deploy chatter-search-bb.surge.sh",
+    "deploy": "npm run clean && npm run build && npm run optimize && npm run surge"
   },
   "license": "ISC",
   "dependencies": {
@@ -31,7 +32,8 @@
     "node-sass": "3.4.2",
     "postcss-cli": "2.5.1",
     "requirejs": "2.1.22",
-    "standard": "6.0.8"
+    "standard": "6.0.8",
+    "surge": "0.17.7"
   },
   "devDependencies": {
     "sane": "1.3.4"

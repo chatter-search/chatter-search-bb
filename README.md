@@ -1,7 +1,7 @@
 # Chatter Search Web
 
-> Web client for Chatter Search API
+> Web client for Chatter Search API.
 
-Hosted on [Firebase](https://chatter-search.firebaseapp.com/).
+[Demo.](https://chatter-search-bb.surge.sh/)
 
 Backbone/requirejs/sass based app.
