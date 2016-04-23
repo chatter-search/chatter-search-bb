@@ -9,7 +9,7 @@
     "copy-dependencies": "./tasks/copy-dependencies.sh",
     "compile-templates": "./tasks/compile-templates.sh",
     "watch-templates": "sane 'npm run compile-templates' ./src/templates --glob=**/*.hbs",
-    "compile-styles": "./tasks/compile-styles.sh > ./build/styles/index.css",
+    "compile-styles": "./tasks/compile-styles.sh",
     "watch-styles": "sane 'npm run compile-styles' ./src/styles --glob='**/*.scss'",
     "compile-scripts": "./tasks/compile-scripts.sh",
     "watch-scripts": "sane 'npm run compile-scripts' ./src/scripts --glob=**/*.js",
