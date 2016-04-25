@@ -1,23 +1,13 @@
-{{#unless isEmpty}}
-	<div class="user-timeline-items">
-		<form class="user-timeline-toolbar">
-			<label>
-				Has image:<input type="checkbox" name="filter-has-image" value="true" />
-			</label>
-			<label>
-				Minimal number of retweets:<input type="number" min="0" step="1" value="0" name="filter-retweet-count" />
-			</label>
-			<radiogroup>
-				<label>
-					Sort by date:<input type="radio" value="created_at_timestamp" name="sort-by" />
-				</label>
-				<label>
-					Sort by length:<input type="radio" value="text_length" name="sort-by" />
-				</label>
-			</radiogroup>
-		</form>
-		<div class="user-timeline-content">
-			{{> userTimelineContent}}
-		</div>
-	</div>
-{{/unless}}
+<div class="user-timeline-items">
+    {{> timelineToolbar}}
+    <div class="user-timeline-content">
+        {{#unless isEmpty}}
+            {{> userTimelineContent}}
+        {{else}}
+            <section class="user-timeline-item">
+                <div class="user-timeline-text">This user does not have any tweets.</div>
+                <div class="clear"></div>
+            </section>
+        {{/unless}}
+    </div>
+</div>

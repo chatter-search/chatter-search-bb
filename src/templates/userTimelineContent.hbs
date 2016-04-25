@@ -1,5 +1,6 @@
 {{#each tweets}}
 	<section class="user-timeline-item">
+        <time class="twitted-at clear" datetime="{{created_at}}">{{$formatTime created_at_timestamp}}</time>
 		{{#each photos}}
 			<a href="{{url}}">
 				<img src="{{media_url_https}}" alt="{{text}}" />
@@ -11,5 +12,6 @@
 {{else}}
     <section class="user-timeline-item">
         <div class="user-timeline-text">Nothing matched your criteria.</div>
+        <div class="clear"></div>
     </section>
 {{/each}}

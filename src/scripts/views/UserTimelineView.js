@@ -7,7 +7,6 @@ define(function (require) {
   'use strict'
 
   var Backbone = require('backbone')
-  var _ = require('underscore')
 
   var templates = require('spices/templates')
   var timelineTemplate = templates.userTimeline
@@ -18,98 +17,96 @@ define(function (require) {
     events: {
       'change [name=filter-has-image]': 'filterImages',
       'input [name=filter-retweet-count]': 'filterRetweetCount',
-      'change [name=sort-by]': 'sortBy'
+      'change [name=sort-by]': 'sortByCriteria',
+      'change [name=sort-direction]': 'sortDirection'
     },
     template: timelineTemplate,
     // This is going to be triggered by MainView as well
     render: function () {
-      var tweets = this.collection.toJSON()
-      var isEmpty = tweets.length === 0
-
       this.toolbar = {
         filters: {
           hasImage: false,
           retweetCount: 0
         },
-        sort: {}
+        sort: {
+          criteria: 'created_at_timestamp',
+          direction: -1
+        }
       }
+
+      var tweets = this.pipeline(this.collection).toJSON()
+      var isEmpty = this.collection.length === 0
 
       var rendered = this.template({
         isEmpty: isEmpty,
+        toolbar: this.toolbar,
         tweets: tweets
       })
       this.$el.html(rendered)
     },
-    filter: function () {
+    pipeline: function (tweets) {
+      tweets = this.filter(tweets)
+      tweets = this.sort(tweets)
+      return tweets
+    },
+    filter: function (tweets) {
       var retweetCount = this.toolbar.filters.retweetCount
       var hasImage = this.toolbar.filters.hasImage
-      var tweets = this.collection.filter(function (el) {
+
+      tweets = tweets.filter(function (el) {
         var hasPhotos = Boolean(el.has('photos'))
         var isPassThreshold = el.get('retweet_count') >= retweetCount
-
         var isGood = hasImage ? (hasPhotos && isPassThreshold) : isPassThreshold
-
         return isGood
       })
 
-      return tweets
+      return new Backbone.Collection(tweets)
     },
+    sort: function (tweets) {
+      var criteria = this.toolbar.sort.criteria
+      tweets = tweets.sortBy(criteria)
+
+      if (this.toolbar.sort.direction === -1) {
+        tweets = tweets.reverse()
+      }
+
+      return new Backbone.Collection(tweets)
+    },
+
     filterImages: function (ev) {
       var on = ev.target.checked
       this.toolbar.filters.hasImage = on
 
-      this.renderFiltered()
+      this.renderTimeline()
     },
     filterRetweetCount: function (ev) {
       var retweetCount = Number(ev.target.value)
       this.toolbar.filters.retweetCount = retweetCount
 
-      this.renderFiltered()
+      this.renderTimeline()
     },
 
-    renderFiltered: function () {
-      var tweetsModelsArray = this.filter()
-      this.filteredCollection = new Backbone.Collection(tweetsModelsArray)
-      // preserve sorting
-      tweetsModelsArray = this.sort()
-
-      var tweets = _.map(tweetsModelsArray, function (el) {
-        return el.toJSON()
-      })
-
-      var rendered
-      rendered = timelineContentTemplate({
-        tweets: tweets
-      })
-
-      this.reRenderTimelineContent(rendered)
-    },
-    sort: function () {
-      var criteria = this.toolbar.sort.criteria
-      var collection = this.filteredCollection || this.collection
-      return collection.sortBy(criteria)
-    },
-    sortBy: function (ev) {
+    sortByCriteria: function (ev) {
       var criteria = ev.target.value
 
-      this.toolbar.sort = {
-        criteria: criteria
-      }
+      this.toolbar.sort.criteria = criteria
 
-      this.renderSorted()
+      this.renderTimeline()
     },
-    renderSorted: function () {
-      var tweetsModelsArray = this.sort()
-      var tweets = _.map(tweetsModelsArray, function (el) {
-        return el.toJSON()
-      })
-      var rendered = timelineContentTemplate({
-        tweets: tweets
-      })
+    sortDirection: function (ev) {
+      var direction = ev.target.checked ? -1 : 1
 
-      this.reRenderTimelineContent(rendered)
+      this.toolbar.sort.direction = direction
+      this.renderTimeline()
     },
-    reRenderTimelineContent: function (rendered) {
+    renderTimeline: function () {
+      var tweets = this.pipeline(this.collection)
+
+      tweets = tweets.toJSON()
+      var rendered
+      rendered = timelineContentTemplate({
+        tweets
+      })
       this.$('.user-timeline-content').html(rendered)
     }
   })

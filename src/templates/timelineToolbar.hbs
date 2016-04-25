@@ -1,0 +1,21 @@
+{{#unless isEmpty}}
+    <form class="user-timeline-toolbar">
+        <label>
+            Has image:<input type="checkbox" name="filter-has-image" {{$checked toolbar.filters.hasImage true}} value="true" />
+        </label>
+        <label>
+            Minimal number of retweets:<input type="number" min="0" step="1" value="{{toolbar.filters.retweetCount}}" name="filter-retweet-count" />
+        </label>
+        <radiogroup>
+            <label>
+                Sort by date:<input type="radio" {{$checked toolbar.sort.criteria 'created_at_timestamp'}} value="created_at_timestamp" name="sort-by" />
+            </label>
+            <label>
+                Sort by length:<input type="radio" {{$checked toolbar.sort.criteria 'text_length'}} value="text_length" name="sort-by" />
+            </label>
+        </radiogroup>
+        <label>
+            Sort direction:<input type="checkbox" name="sort-direction" {{$checked toolbar.sort.direction -1}} value="true" />
+        </label>
+    </form>
+{{/unless}}
