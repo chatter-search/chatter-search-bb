@@ -1,7 +1,7 @@
 <div class="user-timeline-items">
     {{> timelineToolbar}}
     <div class="user-timeline-content">
-        {{#unless isEmpty}}
+        {{#unless hasNoTweets}}
             {{> userTimelineContent}}
         {{else}}
             <section class="user-timeline-item">

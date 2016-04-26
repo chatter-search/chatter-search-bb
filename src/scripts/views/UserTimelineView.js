@@ -35,10 +35,10 @@ define(function (require) {
       }
 
       var tweets = this.pipeline(this.collection).toJSON()
-      var isEmpty = this.collection.length === 0
+      var hasNoTweets = this.collection.length === 0
 
       var rendered = this.template({
-        isEmpty: isEmpty,
+        hasNoTweets: hasNoTweets,
         toolbar: this.toolbar,
         tweets: tweets
       })
