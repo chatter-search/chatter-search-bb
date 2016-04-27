@@ -1,0 +1,28 @@
+.user-timeline-items {
+	width: 90%;
+	margin: 0 auto;
+
+
+}
+.user-timeline-item {
+	margin: 50px 0;
+	padding: 20px;
+	background: rgb(103, 191, 220);
+	font-size: 2em;
+
+	img {
+		width: 20%;
+		margin: 0 10px 10px 0;
+		float: left;
+	}
+}
+.user-timeline-toolbar {
+	padding: 40px 10px 0;
+
+	label {
+		margin: 10px;
+	}
+	[type=number] {
+		width: 4em;
+	}
+}
