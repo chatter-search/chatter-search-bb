@@ -31,6 +31,7 @@
     "jquery": "2.2.3",
     "moment": "2.13.0",
     "node-sass": "3.4.2",
+<<<<<<< HEAD
     "postcss-cli": "2.5.1",
     "requirejs": "2.1.22",
     "standard": "6.0.8",
@@ -39,4 +40,13 @@
   "devDependencies": {
     "sane": "1.3.4"
   }
+=======
+    "requirejs": "2.1.22"
+  },
+  "standard": {
+  "ignore": [
+    "build/**/*"
+  ]
+}
+>>>>>>> 82f9b3b... standart ignores into package.json
 }
