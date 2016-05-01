@@ -1,9 +1,0 @@
-{
-  "firebase": "chatter-search",
-  "public": "deploy",
-  "ignore": [
-    "firebase.json",
-    "**/.*",
-    "**/node_modules/**"
-  ]
-}
