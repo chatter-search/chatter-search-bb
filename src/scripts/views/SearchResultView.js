@@ -20,40 +20,42 @@ define((require) => {
   return Backbone.View.extend({
     template,
     initialize: function () {
-      var rendered = this.template()
-      this.$el.html(rendered)
-
-      var model = new UserShowModel()
-      var collection = new UserTimelineCollection()
-
-      this.userInfoView = new UserInfoView({
-        model,
-        el: this.$('#user-show')
-      })
-
-      this.userTimelineView = new UserTimelineView({
-        collection,
-        el: this.$('#user-timeline')
-      })
+      this.model = new UserShowModel()
+      this.collection = new UserTimelineCollection()
     },
     render: function () {
-      this.userInfoView.render()
-      if (this.userInfoView.model.get('name')) {
+      var hasNothingFound = !this.model.get('name')
+      var rendered = this.template({
+        hasNothingFound
+      })
+      this.$el.html(rendered)
+
+      if (hasNothingFound) {
+        this.userInfoView && this.userInfoView.remove()
+        this.userTimelineView && this.userTimelineView.remove()
+      } else {
+        this.userInfoView = new UserInfoView({
+          model: this.model,
+          el: this.$('#user-show')
+        })
+
+        this.userTimelineView = new UserTimelineView({
+          collection: this.collection,
+          el: this.$('#user-timeline')
+        })
+        this.userInfoView.render()
         this.userTimelineView.render()
       }
       return this
     },
     fetchUserData: function (data) {
-      var reset = true
+      var conf = {
+        data,
+        reset: true
+      }
       return $.when(
-        this.userInfoView.model.fetch({
-          data,
-          reset
-        }),
-        this.userTimelineView.collection.fetch({
-          data,
-          reset
-        })
+        this.model.fetch(conf),
+        this.collection.fetch(conf)
       )
     }
   })
