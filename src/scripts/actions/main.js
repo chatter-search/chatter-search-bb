@@ -1,20 +1,12 @@
 /* global define */
 define(function (require) {
   'use strict'
-  var MainView = require('views/MainView')
-  var UserShowModel = require('models/UserShowModel')
-  var UserTimelineCollection = require('collections/UserTimelineCollection')
-  var $ = require('jquery')
+  var FormView = require('views/FormView')
 
-  return function () {
-    var userShowModel = new UserShowModel()
-    var userTimelineCollection = new UserTimelineCollection()
-    var mainView = new MainView({
-      model: userShowModel,
-      collection: userTimelineCollection
+  return function (rootElement) {
+    var formView = new FormView({
+      el: rootElement.find('#search-form')
     })
-
-    mainView.render(userShowModel)
-    $('#user-show').prepend(mainView.$el)
+    formView.render()
   }
 })
