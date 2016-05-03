@@ -3,7 +3,7 @@
  */
 
 /* global define */
-define(function (require) {
+define((require) => {
   'use strict'
 
   var Backbone = require('backbone')
@@ -13,7 +13,6 @@ define(function (require) {
   var timelineContentTemplate = templates.userTimelineContent
 
   return Backbone.View.extend({
-    el: '#user-timeline',
     events: {
       'change [name=filter-has-image]': 'filterImages',
       'input [name=filter-retweet-count]': 'filterRetweetCount',
@@ -43,6 +42,7 @@ define(function (require) {
         tweets: tweets
       })
       this.$el.html(rendered)
+      return this
     },
     pipeline: function (tweets) {
       tweets = this.filter(tweets)
