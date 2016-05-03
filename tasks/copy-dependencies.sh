@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+mkdir -p ./build
+
 cp node_modules/{\
 jquery/dist/jquery.js,\
 underscore/underscore.js,\
