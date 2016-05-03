@@ -6,10 +6,15 @@
 define((require) => {
   'use strict'
   require('polyfill')
-  require('jquery')
+  var $ = require('jquery')
   require('spices/plugins/serializeObject')
+  var templates = require('spices/templates')
+
+  var rootElement = $('body')
+  var indexTemplate = templates.index
+  rootElement.html(indexTemplate)
 
   require(['actions/main'], (main) => {
-    main()
+    main(rootElement)
   })
 })
