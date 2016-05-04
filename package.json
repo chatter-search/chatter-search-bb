@@ -1,6 +1,6 @@
 {
   "name": "chatter-search-web",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Client for chatter search API",
   "author": "Dmitrii Lapshukov<lapshukov@gmail.com>",
   "scripts": {
