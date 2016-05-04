@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-mkdir -p ./build
+mkdir -p ./build/scripts
 
 cp node_modules/{\
 jquery/dist/jquery.js,\
