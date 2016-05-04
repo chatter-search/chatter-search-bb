@@ -2,19 +2,19 @@
  * Serialize object Jquery form extention
  */
 
-define(function(require) {
-	var _ = require("underscore");
-	var $ = require("jquery");
-	
-	$.fn.serializeObject = function() {
+/* global define */
+define(function (require) {
+  var _ = require('underscore')
+  var $ = require('jquery')
 
-		var sdata = $(this).serializeArray();
-		var data = {};
+  $.fn.serializeObject = function () {
+    var sdata = $(this).serializeArray()
+    var data = {}
 
-		_.each(sdata, function(el) {
-			data[el.name] = el.value;
-		});
+    _.each(sdata, function (el) {
+      data[el.name] = el.value
+    })
 
-		return data;
-	};
-});
+    return data
+  }
+})
