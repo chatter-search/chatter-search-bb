@@ -1,4 +1,4 @@
-# Chatter Search Web
+# Chatter Search Web [![build status](https://gitlab.com/chattersearch/chatter-search-bb/badges/master/build.svg)](https://gitlab.com/chattersearch/chatter-search-bb/commits/master)
 
 > Web client for Chatter Search API.
 
