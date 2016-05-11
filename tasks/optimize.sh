@@ -7,5 +7,5 @@ r.js -o tasks/optimize-config.js
 cd deploy
 	sed -i.bak 's/require-config/index/' index.html
 	rm index.html.bak
-	rm script/require-config.js
+	rm scripts/require-config.js
 cd -
