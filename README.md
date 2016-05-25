@@ -4,4 +4,4 @@
 
 [Demo.](https://chatter-search-bb.surge.sh/)
 
-Backbone/Requirejs/SASS based app.
+Backbone/Requirejs/SASS based app. Linted with standard.
