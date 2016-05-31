@@ -1,4 +1,4 @@
-# Chatter Search Web [![Build Status](https://travis-ci.org/chatter-search/chatter-search-bb.svg?branch=master)](https://travis-ci.org/chattersearch/chatter-search-bb)
+# Chatter Search Web [![Build Status](https://travis-ci.org/chatter-search/chatter-search-bb.svg?branch=master)](https://travis-ci.org/chatter-search/chatter-search-bb)
 
 > Web client for Chatter Search API.
 
